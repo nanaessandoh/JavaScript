@@ -1,2 +1,2 @@
-# Javascipt_Projects
-Contains JavaScript Reference Material
+# Javascipt Projects
+Contains JavaScript Reference Material and Projects
