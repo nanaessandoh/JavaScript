@@ -1,9 +1,10 @@
 body{
-    background: #80bfff; 
+    background-image: url(img/back.jpg); 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    height: 500px;
     letter-spacing: 0.2em;
     font-size: 0.8em;
   }
@@ -11,7 +12,7 @@ body{
     max-width: 400px;
   }
 
-  h1, label{
+  h1, h6, label{
     color: #fff;
   }
 
