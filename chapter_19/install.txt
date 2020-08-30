@@ -1,3 +1,7 @@
+// Node modules are normally not sent to the repo because it is large
+// To restore them you run 'npm install' which uses the package.json file to restore all dependencies
+
+
 ///////////////////////////
 //// INSTALL BABEL  ///////
 ///////////////////////////
@@ -31,10 +35,6 @@ node_modules/.bin/babel src/index.js -w -o dist/assets/bundle.js
 ///////////////////// run with command ///////////////
 npm run babel
 
-// Node modules are normally not sent to the repo because it is large
-// To restore them you run 'npm install' which uses the package.json file to restore all dependencies
-
-
 
 
 /////////////////////////////
@@ -45,10 +45,44 @@ npm install webpack webpack-cli --save-dev
 
 node_modules/.bin/webpack
 
-/// Copy and fix the terminal command into scripts of package.json. I give it a name of webpack
+/// Copy and fix the terminal command into scripts of package.json. I give it a name of build
   "scripts": {
-    "webpack": "node_modules/.bin/webpack"
+    "build": "node_modules/.bin/webpack --mode production"
   }
 
 ///////////////////// run with command ///////////////
 npm run webpack
+
+
+
+/////////////////////////////////////////
+//// INSTALL WEBPACK DEV SERVER  ///////
+////////////////////////////////////////
+
+
+//// Run this in the terminal
+
+npm install webpack-dev-server
+
+/// Add this to the file webpack.config.js
+
+    devServer : {
+        contentBase: path.resolve(__dirname, 'dist'),
+        publicPath: '/assets/'
+    }
+
+/// Copy and fix the terminal command into scripts of package.json. I give it a name of serve
+  "scripts": {
+    "serve": "webpack-dev-server --mode development"
+  }
+
+///////////////////// run with command ///////////////
+npm run serve
+
+
+
+//////////////////////////////////
+//// INSTALL BABEL LOADER  ///////
+//////////////////////////////////
+
+npm install babel-loader --save-dev
