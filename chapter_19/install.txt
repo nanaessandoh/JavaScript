@@ -21,7 +21,34 @@ npm install @babel/preset-env --save-dev
 /////////////////////////////
 
 node_modules/.bin/babel before.js -o after.js
+node_modules/.bin/babel src/index.js -w -o dist/assets/bundle.js 
 
+/// Copy and fix the terminal command into scripts of package.json. I give it a name of babel
+  "scripts": {
+    "babel": "node_modules/.bin/babel src/index.js -o dist/assets/bundle.js"
+  }
+
+///////////////////// run with command ///////////////
+npm run babel
 
 // Node modules are normally not sent to the repo because it is large
 // To restore them you run 'npm install' which uses the package.json file to restore all dependencies
+
+
+
+
+/////////////////////////////
+//// INSTALL WEBPACK  ///////
+/////////////////////////////
+
+npm install webpack webpack-cli --save-dev
+
+node_modules/.bin/webpack
+
+/// Copy and fix the terminal command into scripts of package.json. I give it a name of webpack
+  "scripts": {
+    "webpack": "node_modules/.bin/webpack"
+  }
+
+///////////////////// run with command ///////////////
+npm run webpack
