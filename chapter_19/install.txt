@@ -1,1 +1,27 @@
+///////////////////////////
+//// INSTALL BABEL  ///////
+///////////////////////////
+
+
+npm init
 npm install @babel/core @babel/cli --save-dev
+npm install @babel/preset-env --save-dev
+
+/////////////////////////////////
+/////create .babelrc file////////
+////insert into .babelrc file////
+/////////////////////////////////
+
+{
+    "presets": ["@babel/preset-env"]
+}
+
+/////////////////////////////
+///// Convert by running ////
+/////////////////////////////
+
+node_modules/.bin/babel before.js -o after.js
+
+
+// Node modules are normally not sent to the repo because it is large
+// To restore them you run 'npm install' which uses the package.json file to restore all dependencies
