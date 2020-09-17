@@ -75,8 +75,8 @@ Contains JavaScript Reference Material and Projects
     │   └── Firebase (Databases)
     │
     ├── Chapter 17
-    │   │ Realtime Chatroom
-    │   └──
+    │   │ 
+    │   └── Realtime Chatroom
     │
     ├── Chapter 18
     │   │
@@ -89,6 +89,18 @@ Contains JavaScript Reference Material and Projects
     ├── Chapter 20
     │   │
     │   └── UI Library
+    │
+    ├── Chapter 21 (TypeScript)
+    │   │
+    │   ├── 1. Assignments
+    │   ├── 2. Arrays/ Mixed Arrays
+    │   ├── 3. Objects
+    │   ├── 4. Explicit Types
+    │   ├── 5. Union/ Any Types
+    │   ├── 6. Functions/ Aliases
+    │   ├── 7. Classes
+    │   ├── 8. Interfaces
+    │   └── 9. Generics, Enums, Tuples 
     └── ...
 
 
