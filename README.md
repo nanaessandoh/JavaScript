@@ -1,4 +1,4 @@
-# Javascipt Projects
+# JavaScipt Tutorials
 Contains JavaScript Reference Material and Projects
 
     .
