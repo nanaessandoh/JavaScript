@@ -10,8 +10,23 @@ const DistinctValues = (input) => {
 
 
 // Count Distinct pairs in a list
-const DistinctPair = () => {
-    return [...new Set(input)].length();
+const DistinctPair = (input) => {
+    let output = [];
+    const distinctArray =  [...new Set(input)];
+    distinctArray.forEach((itemInDistinctArray) =>{
+        let count = 0;
+        input.forEach((itemInInputArray) => {
+            if( itemInInputArray === itemInDistinctArray )
+            {
+                count++;
+            }
+        })
+        if (count === 2){
+            output.push(itemInDistinctArray)
+        }
+    })
+
+    return output;
 }
 
 // Reverse a string
@@ -66,7 +81,7 @@ const ReverseInteger = (myInput) =>{
 // Fizzbuzz
 const Fizzbuzz = (number) => {
     
-    for (let i = 0; i <= number; i++)
+    for (let i = 1; i <= number; i++)
     {
         let output = '';
 
@@ -84,24 +99,87 @@ const Fizzbuzz = (number) => {
 
 }
 
-const Fibonnacci = (number) => {
-
-    let output = [1,1];
-    for (let i  = 0; i< number-2; i++)
+const Fibonacci = (number) => {
+    // Recursive
+    // if (number === 0 || number === 1){
+    //     return (number)
+    // }
+    // else{
+    //     return Fibonacci(number-1) + Fibonacci(number-2);
+    // }
+    let output = [0,1];
+    for (let i  = 0; i < number-1; i++)
     {
         output.push(output[i] +output[i+1]);
     }
 
-    return output;
-    //  output.forEach((itemInOutput) => {
-    //      console.log(itemInOutput);
-    //  });
+    return output[number];
+}
+
+const FirstRecurringChar = (inputString) =>{
+ let myArray = [];
+  for (let i = 0; i < inputString.length; i++ )
+  {
+      if (myArray.includes(inputString[i]))
+      {
+          return inputString[i]
+      }
+      else myArray.push(inputString[i]);
+  }
+
+    return 'None';
 }
 
 
+ /*
+     For an array of numbers given, return the smallest number with the highest frequency in the list.
+ */
+
+ const SmallestNumberHighestFreq = (inputArray) =>{
+
+    let tempArray = [];
+    for (let i = 0; i< 10; i++){
+        tempArray.push(0);
+    }
+
+    for(let i = 0; i< inputArray.length; i++)
+    {
+        tempArray[inputArray[i]]++;    
+    }
+
+    return ReturnSmallestIndexAndMaxValue(tempArray) ;
+ }
+
+ const ReturnSmallestIndexAndMaxValue = (inputArray) => {
+
+    let currHighestVal = 0;
+    let currIndex = 0
+
+    for (let i= 0; i< inputArray.length; i++)
+    {
+        // Check if the value in array is greater than currHighestVal
+          // if so => replace HighestVal and index
+        // else if value in the array == currentHighest value
+          // -- compare both index and select the smallest
+        if (inputArray[i] > currHighestVal)
+        {
+            currHighestVal = inputArray[i];
+            currIndex = i;
+        }
+        else if ((inputArray[i] === currHighestVal) && (i < currIndex))
+        {
+            currIndex = i;
+        }
+    }
+
+    return { number : currIndex ,
+            value: currHighestVal};
+
+ }
 
 
 console.log(DistinctValues(myArray));
+console.log(DistinctPair(myArray));
 console.log(ReverseString(myString));
 console.log(ReverseSentence(myString));
 console.log(MaximumValue(myArray));
@@ -109,4 +187,6 @@ console.log(MinimumValue(myArray));
 console.log(DistinctValuesAndFrequency(myArray));
 console.log(ReverseInteger(myInt));
 console.log(Fizzbuzz(20));
-console.log(Fibonnacci(10));
+console.log(Fibonacci(0));
+console.log(FirstRecurringChar('ABCD'));
+console.log(SmallestNumberHighestFreq([0,0,1,1,1,2,3,4,5,7,8,9,3,5,6,7,3]));
