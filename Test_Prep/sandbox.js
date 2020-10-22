@@ -133,21 +133,27 @@ const Fizzbuzz = (number) => {
 
 }
 
-const Fibonacci = (number) => {
-    // Recursive
-    // if (number === 0 || number === 1){
-    //     return (number)
-    // }
-    // else{
-    //     return Fibonacci(number-1) + Fibonacci(number-2);
-    // }
-    let output = [0,1];
-    for (let i  = 0; i < number-1; i++)
-    {
-        output.push(output[i] +output[i+1]);
+const Fibonacci = (number, memo) => {
+    // Recursive ( Dynamic Programming)
+    memo = new Array(number+1).fill(null);
+    if(memo[number] != null)
+        return memo[number];
+    if (number === 0 || number === 1){
+        return (number)
     }
+    else{
+        const result =  Fibonacci(number-1) + Fibonacci(number-2);
+        memo[number]  = result;
+        return result;
+    }
+    // Buttom Up Approach
+    // let output = [0,1];
+    // for (let i  = 0; i < number-1; i++)
+    // {
+    //     output.push(output[i] +output[i+1]);
+    // }
 
-    return output[number];
+    // return output[number];
 }
 
 /*
@@ -576,7 +582,7 @@ const EquilibriumIndex = (inputArray) =>{
     output = [];
     // Find the total of the elements in the array
     let total = inputArray.reduce((a,b) => a + b, 0);
-    
+
     let prefixTotal = 0;
     let suffixTotal = total;
 
@@ -608,6 +614,104 @@ const EquilibriumIndex = (inputArray) =>{
 
 }
 
+/* 
+Given set of distinct integers, return all possible subsets (the power set).
+*/
+const Subsets = (inputArray) =>{
+
+    let myArray = inputArray.reduce(
+        (subsets, value) => subsets.concat(
+         subsets.map(set => [value,...set])
+        ),
+        [[]]
+      );
+
+    return myArray;
+
+}
+
+
+/*
+Given an Array of integers, find total number of combination that sum up to a given number. 
+*/
+const TotalCombinationsOfSum = (inputArray, num) =>
+{
+    let tempArray = inputArray.reduce(
+        (subsets, value) => subsets.concat(
+         subsets.map(set => [value,...set])
+        ),
+        [[]]
+      );
+
+    let count = 0;
+    tempArray.forEach( item => {
+
+         // Find sum of elements in array
+        const sum = item.reduce(function(a, b){
+            return a + b;
+        }, 0);
+        
+        // If the sum of the array is equal to num increase the count
+        if(sum === num)
+            count++;
+    }); 
+
+    return count;
+}
+
+
+
+/*
+Given an array, perform a number of right/left circular rotations by a factor "k" and return 
+the array  
+Note 0 = left; 1 = right
+*/
+
+const CircularRotation = (inputArray, k, LoR) => {
+    
+    const aL = inputArray.length;
+    let tArray = new Array(aL).fill(0); 
+
+    // right
+    if(LoR === 0)
+    {
+        for(let i = 0; i < aL; i++)
+        {
+            if (i+k >= aL)
+            {
+                tArray[(i+k)%aL] = inputArray[i];
+
+            }
+            else 
+            {
+                tArray[i+k] = inputArray[i];
+            }
+        }   
+    }
+
+    // left
+    if(LoR === 1)
+    {
+        for(let i = 0; i < aL; i++)
+        {
+            if (i-k < 0)
+            {
+                // Implement Modulo Operator
+                let r = (i-k) % aL;
+                r = r < 0 ? r + aL : r;
+                tArray[r] = inputArray[i];
+            }
+            else 
+            {
+                tArray[i-k] = inputArray[i];
+            }
+        }
+    }
+
+    return tArray;
+
+}
+
 console.log(DistinctValues(myArray));
 console.log(DistinctPair(myArray));
 console.log(ReverseString(myString));
@@ -617,7 +721,7 @@ console.log(MinimumValue(myArray));
 console.log(DistinctValuesAndFrequency(myArray));
 console.log(ReverseInteger(myInt));
 console.log(Fizzbuzz(20));
-console.log(Fibonacci(1));
+console.log(Fibonacci(2));
 console.log(FirstDuplicateNumber([2,1,5,5,2,3,5,3,2]))
 console.log(FirstRepeatingChar('ABCDSD'));
 console.log(FirstNonRepeatingChar('aasssskkbkkaaak'));
@@ -631,7 +735,12 @@ console.log(LongestPalindromeInString("babad"));
 console.log(TwoStringsAreAnagram('BAAA','aaba'));
 console.log(StringCompression('aabbcbb'));
 console.log(SortedSquaredArray([-5,-3,-1,2,3,4,5]));
+console.log(EquilibriumIndex([-1,3,-4,5,1,-6,2,1]));
+console.log(CircularRotation([1,2,3,4,5],1,1));
 console.log('a'.charCodeAt());
 console.log(String.fromCharCode(97));
-console.log(EquilibriumIndex([-1,3,-4,5,1,-6,2,1]));
+console.log(Subsets([1,2,3]))
+console.log(TotalCombinationsOfSum([1,2,3,4,5,6,7,8,9,10],10));
+
+
 
